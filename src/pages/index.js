@@ -41,7 +41,7 @@ const IndexPage = () => {
 
           <p style={{ marginTop: 20 }}>we would like to ask you to pick one of the following methods to send us your work:</p>
           <ul>
-            <li>compress the source file and email to <a href='mailto:betalabstech@lcjgroup.com'>betalabstech@lcjgroup.com</a></li>
+            <li>compress the source file and email to <a href='mailto:matthewlam@lcjgroup.com'>matthewlam@lcjgroup.com</a> and <a href='mailto:craigyam@lanecrawford.com'>craigyam@lanecrawford.com</a></li>
             <li style={{ marginTop: 20 }}>
               <ol>
                 <li>create a private repository on github</li>
