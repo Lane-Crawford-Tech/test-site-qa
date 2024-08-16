@@ -2,7 +2,7 @@
 
 a site for tests
 
-visit site: https://lcjg-betalabs.github.io/test-site-qa/
+visit site: https://lane-crawford-tech.github.io/test-site-qa/
 
 ## Development / Maintenance
 
