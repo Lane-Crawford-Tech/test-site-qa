@@ -1,37 +1,49 @@
 import axios from 'axios'
-// import { MenuItem, Button, TextField } from "@material-ui/core"
 import { DataGrid } from '@mui/x-data-grid'
 import { useCallback, useEffect, useState } from "react"
-import { Link } from "gatsby"
-// import { useForm } from "react-hook-form"
 
 const columns = [
-  { field: 'id', headerName: 'ID', width: 150 },
+  { field: 'id',
+    headerName: 'ID',
+    width: 150,
+    resizable: false
+  },
   {
     field: 'categories',
     headerName: 'Categories',
-    width: 450,
+    width: 250,
     editable: false,
+    resizable: false,
   },
   {
     field: 'name',
     headerName: 'Name',
     width: 150,
     editable: false,
+    resizable: false,
   },
   {
     field: 'inStock',
     headerName: 'In Stock',
-    type: 'number',
+    type: 'boolean',
     width: 150,
     editable: false,
+    resizable: false,
   },
   {
     field: 'price',
     headerName: 'Price',
     type: 'number',
-    width: 110,
+    width: 150,
     editable: false,
+    resizable: false,
+    valueFormatter: (params) => {
+            return new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'HKD',
+                minimumFractionDigits: 2,
+            }).format(params);
+        }
   },
 ]
 
@@ -40,7 +52,7 @@ const ProductPage = () => {
 
   const loadProducts = useCallback(async () => {
     const response = await axios.get(`${window.location.origin
-      }/test-site-qa/products.json`)
+      }/qa-engineer-challenge/products.json`)
 
     setProducts(response.data)
   })
@@ -61,7 +73,7 @@ const ProductPage = () => {
           <div style={{ marginLeft: '30px', border: '1px solid #bbb', display: 'inline-block' }}>
             <img
               width='120px'
-              src={'/test-site-qa/filter-instruction.png'}
+              src={'/qa-engineer-challenge/filter-instruction.png'}
               alt='table header menu' />
           </div>
         </div>
@@ -92,7 +104,7 @@ const ProductPage = () => {
           <ol>
             <li>filter results should match selected criteria, e.g. if we selected Category 4, all products listed in the result should have "Category 4" in the categories field</li>
             <li>check if any data are strange/unexpected</li>
-            <li>you are encouraged to test <a href='/test-site-qa/products.json'>the API response</a> too</li>
+            <li>you are encouraged to test <a href='/qa-engineer-challenge/products.json'>the API response</a> too</li>
           </ol>
         </div>
       </div>
@@ -131,8 +143,11 @@ const ProductPage = () => {
           style={{ marginTop: 20 }}
           rows={products}
           columns={columns}
-          pageSize={10}
-          rowsPerPageOptions={[10]}
+          pageSizeOptions={[10, 25]}
+          initialState={{
+          pagination: {
+            paginationModel: { pageSize: 10 } },
+          }}
           disableSelectionOnClick={true}
           disableColumnSelector={true}
         />
